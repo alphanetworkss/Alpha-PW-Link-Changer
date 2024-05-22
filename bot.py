@@ -67,7 +67,7 @@ async def Bulk(event):
         # "- Enter your Batch Name: Provide a name for your batch process.\n\n"
         "4. Send File to Telegram Bot:\n"
         "- Click on the \"Send to Telegram bot\" button to submit your details and start the link changing process.",
-        buttons=[Button.url("Get Link In Bulk", "https://t.me/Alpha_Script_Robot/AlphaNetwork"),Button.inline("Get Chat ID", b"get_chat_id")]
+        buttons=[Button.url("Get Link In Bulk", "https://t.me/PW_Alpha_Link_Changer_RoBot/linkchanger"),Button.inline("Get Secret ID", b"get_chat_id")]
         
     )
 @bot.on(events.CallbackQuery(data=b"get_chat_id"))
