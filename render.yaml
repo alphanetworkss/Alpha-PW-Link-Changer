@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: PW Link changer 2
+    runtime: python
+    region: singapore
+    branch: master
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app & python3 bot.py
+    autoDeploy: false
+
+    envVars:
+      - key: API_ID
+        sync: false
+
+      - key: API_HASH
+        sync: false
+
+      - key: BOT_TOKEN
+        sync: false
+
+    plan: free
