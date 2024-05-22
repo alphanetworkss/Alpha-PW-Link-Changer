@@ -50,7 +50,7 @@ async def change(event):
         else:
             await link_gen(link_hash, bot, event)
 
-@bot.on(events.NewMessage(pattern='/Bulk'))
+@bot.on(events.NewMessage(pattern='/bulk'))
 async def Bulk(event):
     await event.respond(
         "*Follow Steps To Genrate Link In Bulk*\n"
@@ -73,9 +73,9 @@ async def Bulk(event):
 @bot.on(events.CallbackQuery(data=b"get_chat_id"))
 async def get_chat_id(event):
     chat_id = event.chat_id
-    await event.respond(f"Chat ID: `{chat_id}`")    
+    await event.respond(f"Your Secret ID Is: `{chat_id}`")    
 
-@bot.on(events.NewMessage(pattern='/Get_Secret_ID'))
+@bot.on(events.NewMessage(pattern='/get_secret_id'))
 async def get_chat_id(event):
     chat_id = event.chat_id
     await event.respond(f"Your Secret ID Is: `{chat_id}`")
