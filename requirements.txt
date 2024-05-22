@@ -1,5 +1,4 @@
 flask
 telethon
 gunicorn
-webbrowser
 python-dotenv
