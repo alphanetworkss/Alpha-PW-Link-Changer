@@ -32,10 +32,12 @@ async def link_gen(link_hash, bot, event):
             new_link = f"""
 __**Download link for Bot**__
 `https://api.pwjarvis.tech?v={link_hash}&quality={quality.raw_text} -n {name.raw_text}`
+
 `https://api2.pwjarvis.tech?v={link_hash}&quality={quality.raw_text} -n {name.raw_text}`
 
 __**1DM link**__
 `https://api.pwjarvis.tech?v={link_hash}`
+
 `https://api2.pwjarvis.tech?v={link_hash}`
 """
                         
