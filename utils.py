@@ -33,12 +33,10 @@ async def link_gen(link_hash, bot, event):
 __**Download link for Bot**__
 `https://pw.jarviis.workers.dev?v={link_hash}&quality={quality.raw_text} -n {name.raw_text} (@Team_AlphaNetwork)`
 
-# `https://pw.jarviis.workers.dev?v={link_hash}&quality={quality.raw_text} -n {name.raw_text} (@Team_AlphaNetwork)`
 
 __**1DM link**__
 `https://pw.jarviis.workers.dev?v={link_hash}`
 
-# `https://api2.pwjarvis.tech?v={link_hash}`
 """
                         
             await conv.send_message(
