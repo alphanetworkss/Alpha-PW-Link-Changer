@@ -54,16 +54,16 @@ async def callback_check_subscription(event):
 async def start(event):
     await event.respond("Hi, I am the link extractor of Physics Wallah. Press /bulk to to extract")
 
-# @bot.on(events.NewMessage(pattern='https://'))
-# async def change(event):
-#     if await check_subscription(event):
-#         try:
-#             link_hash = event.raw_text.split('/')[3]
-#             await link_gen(link_hash, bot, event)
-#         except IndexError:
-#             await event.respond("Invalid URL! Please ensure it is in the correct format.")
-#         except Exception as e:
-#             await event.respond(f"An error occurred: {str(e)}")
+@bot.on(events.NewMessage(pattern='/al https://'))
+async def change(event):
+    if await check_subscription(event):
+        try:
+            link_hash = event.raw_text.split('/')[3]
+            await link_gen(link_hash, bot, event)
+        except IndexError:
+            await event.respond("Invalid URL! Please ensure it is in the correct format.")
+        except Exception as e:
+            await event.respond(f"An error occurred: {str(e)}")
 
 @bot.on(events.NewMessage(pattern='/bulk'))
 async def bulk(event):
