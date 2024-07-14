@@ -1,9 +1,10 @@
+import logging
+from os import getenv
+from dotenv import load_dotenv
 from telethon import TelegramClient, events, Button
 from telethon.errors.rpcerrorlist import UserNotParticipantError, ChatAdminRequiredError
-from os import getenv
-from utils import link_gen
-import logging
-from dotenv import load_dotenv
+from telethon.tl.types import ReplyKeyboardMarkup, KeyboardButtonRow, KeyboardButton
+from telethon.errors import TimeoutError
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -26,15 +27,59 @@ bot = TelegramClient(
     bot_token=bot_token
 )
 
+async def link_gen(link_hash, bot, event):
+    async with bot.conversation(event.chat_id, timeout=200) as conv:
+        try:
+            await conv.send_message(
+                'Please select the quality:',
+                buttons=ReplyKeyboardMarkup(
+                    rows=[
+                        KeyboardButtonRow(buttons=[KeyboardButton(text="240"), KeyboardButton(text="360")]),
+                        KeyboardButtonRow(buttons=[KeyboardButton(text="480"), KeyboardButton(text="720")])
+                    ],
+                    resize=True,
+                    persistent=True,
+                    placeholder="Please select the quality:"
+                )
+            )
+
+            quality = await conv.get_response()
+            await conv.send_message(
+                "Please enter the name of the lecture:",
+                buttons=Button.clear()
+            )
+            name = await conv.get_response()
+
+            new_link = f"""
+__**Download link for Bot**__
+`https://kashurtek.site?url={link_hash}&quality={quality.text} -n {name.text} (@Team_AlphaNetwork)`
+
+__**1DM link**__
+`https://pw.jarviis.workers.dev?v={link_hash}`
+"""
+
+            await conv.send_message(new_link)
+
+        except TimeoutError:
+            await event.respond(
+                "Timed out, try again",
+                buttons=Button.clear()
+            )
+        except Exception as e:
+            await event.respond(
+                f"An error occurred: {str(e)}",
+                buttons=Button.clear()
+            )
+
 async def check_subscription(event):
     try:
         await bot.get_permissions(force_sub_channel, event.sender_id)
         return True
     except UserNotParticipantError:
         await event.respond(
-            "🛡 Subscribe Our Channels If You Want To Start The Bot And Download From It:\n\n"
+            "🛡 Subscribe to our channels to use the bot and download from it:\n\n"
             "➤ @Team_AlphaNetwork\n\n"
-            "☑️ Done Subscribed! Click ✅CHECK",
+            "☑️ Done subscribing? Click ✅CHECK",
             buttons=[
                 Button.url("Subscribe", f"https://t.me/{force_sub_channel}"),
                 Button.inline("✅CHECK", b"check_subscription")
@@ -52,13 +97,13 @@ async def callback_check_subscription(event):
 
 @bot.on(events.NewMessage(pattern='/start'))
 async def start(event):
-    await event.respond("Hi, I am the link extractor of Physics Wallah. Press /bulk to to extract")
+    await event.respond("Hi, I am the link extractor of Physics Wallah. Press /bulk to extract.")
 
 @bot.on(events.NewMessage(pattern='/al https://'))
 async def change(event):
     if await check_subscription(event):
         try:
-            link_hash = event.raw_text.split('/')[3]
+            link_hash = event.raw_text.split(' ')[1]
             await link_gen(link_hash, bot, event)
         except IndexError:
             await event.respond("Invalid URL! Please ensure it is in the correct format.")
