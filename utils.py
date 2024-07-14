@@ -31,13 +31,13 @@ async def link_gen(link_hash, bot, event):
             name = await conv.get_response()
             new_link = f"""
 __**Download link for Bot**__
-`https://pw.jarviis.workers.dev?v={link_hash}&quality={quality.raw_text} -n {name.raw_text} (@Team_AlphaNetwork)`
+`https://kashurtek.site?url={link_hash}&quality={quality.raw_text} -n {name.raw_text} (@Team_AlphaNetwork)`
 
 
-__**1DM link**__
-`https://pw.jarviis.workers.dev?v={link_hash}`
+# __**1DM link**__
+# `https://pw.jarviis.workers.dev?v={link_hash}`
 
-"""
+# """
                         
             await conv.send_message(
                 new_link
