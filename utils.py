@@ -8,9 +8,9 @@ async def link_gen(link_hash, bot, event):
             await conv.send_message(
                 'Please select the quality:',   
                 buttons=ReplyKeyboardMarkup(
-                    keyboard=[
-                        [KeyboardButton(text="240"), KeyboardButton(text="360")],
-                        [KeyboardButton(text="480"), KeyboardButton(text="720")],
+                    rows=[
+                        KeyboardButtonRow(buttons=[KeyboardButton(text="240"), KeyboardButton(text="360")]),
+                        KeyboardButtonRow(buttons=[KeyboardButton(text="480"), KeyboardButton(text="720")])
                     ],
                     resize=True,
                     persistent=True,
