@@ -14,7 +14,7 @@ load_dotenv()  # Load environment variables from .env file
 api_id = getenv("API_ID")
 api_hash = getenv("API_HASH")
 bot_token = getenv("BOT_TOKEN")
-force_sub_channel = getenv("FORCE_SUB", "my_introvert_world")
+force_sub_channel = getenv("FORCE_SUB", "@Team_AlphaNetwork")
 
 if not api_id or not api_hash or not bot_token:
     raise ValueError("API ID, API HASH, and BOT TOKEN must be set")
