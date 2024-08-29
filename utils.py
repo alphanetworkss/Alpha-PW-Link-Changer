@@ -27,10 +27,10 @@ async def link_gen(link_hash, bot, event):
 
             new_link = f"""
 __**Download link for Bot**__
-`https://kashurtek.site?url={link_hash}&quality={quality.text} -n {name.text} (@Team_AlphaNetwork)`
+`https://alpha-api-eight.vercel.app/?url={link_hash}&quality={quality.text} -n {name.text} (@Team_AlphaNetwork)`
 
 __**1DM link**__
-`https://pw.jarviis.workers.dev?v={link_hash}`
+`https://alpha-api-eight.vercel.app/?url={link_hash}`
 """
 
             await conv.send_message(new_link)
