@@ -99,7 +99,7 @@ async def callback_check_subscription(event):
 async def start(event):
     await event.respond("Hi, I am the link extractor of Physics Wallah. Press /bulk to extract.")
 
-@bot.on(events.NewMessage(pattern='/al https://'))
+@bot.on(events.NewMessage(pattern='https://'))
 async def change(event):
     if await check_subscription(event):
         try:
